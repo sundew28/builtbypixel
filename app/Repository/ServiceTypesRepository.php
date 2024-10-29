@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Repository;
+
 use App\Models\ServiceTypes;
 use App\Interfaces\ServiceTypesRepositoryInterface;
 
-class ServiceTypesReposiotry implements ServiceTypesRepositoryInterface
+class ServiceTypesRepository implements ServiceTypesRepositoryInterface
 {
     public function index(){
         return ServiceTypes::all();

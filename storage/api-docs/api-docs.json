@@ -1,0 +1,41 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Car service booking application.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/mechanics": {
+            "get": {
+                "tags": [
+                    "Mechanics"
+                ],
+                "summary": "Display a listing of the Mechanics.",
+                "operationId": "e6540a03df3fca5e2c37fc2c6ab4033b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "Sanctum",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Mechanics",
+            "description": "Mechanics"
+        }
+    ]
+}

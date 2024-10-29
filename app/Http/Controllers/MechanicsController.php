@@ -7,22 +7,20 @@ use App\Http\Requests\StoreMechanicsRequest;
 use App\Http\Requests\UpdateMechanicsRequest;
 
 class MechanicsController extends Controller
-{
+{    
     /**
-     * Display a listing of the resource.
-     */
+      * @OA\Get(
+      *     path="/mechanics",
+      *     summary="Display a listing of the Mechanics.",
+      *     tags={"Mechanics"},
+      *     @OA\Response(response=200, description="Successful operation"),
+      *     @OA\Response(response=400, description="Invalid request")
+      * )
+      */
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    }    
 
     /**
      * Store a newly created resource in storage.
