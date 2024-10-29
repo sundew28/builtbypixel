@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Mechanics;
 use App\Http\Requests\StoreMechanicsRequest;
 use App\Http\Requests\UpdateMechanicsRequest;
+use App\Interfaces\MechanicsRepositoryInterface;
 
 class MechanicsController extends Controller
-{    
+{
+
+    public function __construct(private MechanicsRepositoryInterface $mechanicsRepositoryInterface)
+    {
+        $this->mechanicsRepositoryInterface = $mechanicsRepositoryInterface;
+    }
+
     /**
       * @OA\Get(
       *     path="/mechanics",
@@ -19,7 +26,7 @@ class MechanicsController extends Controller
       */
     public function index()
     {
-        //
+        dd('hello');
     }    
 
     /**
