@@ -17,9 +17,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(ServiceRepositoryInterface::class,ServiceReposiotry::class);
-        $this->app->bind(ServiceTypesRepositoryInterface::class,ServiceTypesReposiotry::class);
-        $this->app->bind(MechanicsRepositoryInterface::class,MechanicsReposiotry::class);
+        $this->app->bind(ServiceRepositoryInterface::class,ServiceRepository::class);
+        $this->app->bind(ServiceTypesRepositoryInterface::class,ServiceTypesRepository::class);
+        $this->app->bind(MechanicsRepositoryInterface::class,MechanicsRepository::class);
     }
 
     /**
