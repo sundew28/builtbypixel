@@ -1,13 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\ServiceTypes;
 
+use App\Http\Controllers\Controller;
 use App\Models\ServiceTypes;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Requests\StoreServiceTypesRequest;
 use App\Http\Requests\UpdateServiceTypesRequest;
+use App\Interfaces\ServiceTypesRepositoryInterface;
+use App\Enums\CommonEnum;
 
 class ServiceTypesController extends Controller
 {
+    /**
+     * Inject the interface to access the service.
+     * 
+     * @param ServiceTypesRepositoryInterface $serviceTypesRepositoryInterface
+     */
+    public function __construct(private ServiceTypesRepositoryInterface $serviceTypesRepositoryInterface)
+    {
+       // $this->serviceTypesRepositoryInterface = $serviceTypesRepositoryInterface;
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Mechanics\MechanicsController;
+use App\Http\Controllers\Api\Services\ServicesController;
+use App\Http\Controllers\Api\ServiceTypes\ServiceTypesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +31,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');    
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    // Route to logout
-    Route::post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->group(function () { 
 
-    Route::get('api/mechanics', 'MechanicsController@index');
+    // CRUD routes for mechanics
+    Route::match(['get', 'post', 'put', 'delete'], '/mechanics/{id?}', [MechanicsController::class, 'handle']);
+
+    // CRUD routes for services
+    Route::match(['get', 'post', 'put', 'delete'], '/services/{id?}', [ServicesController::class, 'handle']);
+
+    // CRUD routes for service types
+    Route::match(['get', 'post', 'put', 'delete'], '/serviceTypes/{id?}', [ServiceTypesController::class, 'handle']);
+
 });

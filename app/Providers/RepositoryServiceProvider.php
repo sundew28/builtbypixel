@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\ServiceRepositoryInterface;
-use App\Repository\ServiceReposiotry;
+use App\Repository\ServiceRepository;
 use App\Interfaces\ServiceTypesRepositoryInterface;
-use App\Repository\ServiceTypesReposiotry;
+use App\Repository\ServiceTypesRepository;
 use App\Interfaces\MechanicsRepositoryInterface;
-use App\Repository\MechanicsReposiotry;
+use App\Repository\MechanicsRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {

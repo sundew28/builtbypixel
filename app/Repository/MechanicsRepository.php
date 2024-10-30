@@ -14,13 +14,13 @@ class MechanicsRepository implements MechanicsRepositoryInterface
    {
       return Mechanics::all();
    }
-
-   /**
-     * Show the record by ID.
-     */
-   public function getById($id)
+   
+   public function show(array $data, $id)
    {
-      return Mechanics::findOrFail($id);
+      if ($id) {
+            return Mechanics::findOrFail($id);
+        }
+        return Mechanics::all();
    }
 
    /**
