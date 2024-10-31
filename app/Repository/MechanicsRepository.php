@@ -8,19 +8,15 @@ use App\Interfaces\MechanicsRepositoryInterface;
 class MechanicsRepository implements MechanicsRepositoryInterface
 {
    /**
-     * Display a listing of the resource.
-     */
-   public function index()
+     * Display a listing of the resource or ID.
+     */ 
+   public function show()
    {
-      return Mechanics::all();
-   }
-   
-   public function show(array $data, $id)
-   {
-      if ($id) {
+      /*if (filter_var($id, FILTER_VALIDATE_INT)) {
             return Mechanics::findOrFail($id);
-        }
-        return Mechanics::all();
+      }
+      */
+      return Mechanics::all();
    }
 
    /**

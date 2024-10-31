@@ -10,6 +10,9 @@ use App\Http\Requests\StoreMechanicsRequest;
 use App\Http\Requests\UpdateMechanicsRequest;
 use App\Interfaces\MechanicsRepositoryInterface;
 use App\Enums\CommonEnum;
+use App\Classes\ApiResponseClass;
+use App\Http\Resources\MechanicsResource;
+use Illuminate\Contracts\Routing\ResponseFactory;
 
 class MechanicsController extends Controller
 {
@@ -26,23 +29,43 @@ class MechanicsController extends Controller
     public function handle(Request $request, $id = null)
     {
         if ($request->isMethod('get')) {            
-           return $this->show($request, $id);
+           return $this->show();
         }
 
-    }
-
+    }   
     
-    public function index()
-    {
-        //dd('hello2');
-    }    
-
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreMechanicsRequest $request)
+      * @OA\Post(
+      *     path="/mechanics",
+      *     summary="Create a new Mechanic",
+      *     tags={"Mechanics"},
+      *     @OA\Parameter(
+     *         name="first_name",
+     *         in="query",
+     *         description="Mechanic first name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="last_name",
+     *         in="query",
+     *         description="Mechanic last name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+      *     @OA\Response(response=200, description="Successful operation"),
+      *     @OA\Response(response=400, description="Invalid request")
+      * )
+      */
+     
+     /**
+      * List all mechanics
+      * 
+      * @return JsonResponse
+      */
+    public function store(StoreMechanicsRequest $request): ResponseFactory
     {
-        //
+        $data = $this->mechanicsRepositoryInterface->show($request);
     }
 
     /**
@@ -54,19 +77,21 @@ class MechanicsController extends Controller
       *     @OA\Response(response=400, description="Invalid request")
       * )
       */
-    public function show($request, $id = null)
+     
+     /**
+      * List all mechanics
+      * 
+      * @return JsonResponse
+      */
+    public function show(): mixed
     {
-        dd('done again');
-        return $this->mechanicsRepositoryInterface->show($request, $id);
-    }
+        $id = (isset($request->id) ? $request->id : null);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Mechanics $mechanics)
-    {
-        //
-    }
+        $data = $this->mechanicsRepositoryInterface->show();
+        
+        return ApiResponseClass::sendResponse(MechanicsResource::collection($data),'List Of Mechanics',200);
+        
+    }    
 
     /**
      * Update the specified resource in storage.
