@@ -22,7 +22,22 @@ class UpdateMechanicsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
         ];
+    }
+
+    /**
+     * On failed validation.
+     *
+     * @return json<string, Illuminate\Http\Exceptions\HttpResponseException>
+     */
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
 }
